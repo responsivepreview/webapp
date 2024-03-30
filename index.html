@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma Responsive Preview Web App</title>
+</head>
+
+<body>
+    <div class="content">
+        loading corresponding format...
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            console.log(`Screen Width: ${screenWidth}px`);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const flow1URL = urlParams.get('flow1');
+            const flow2URL = urlParams.get('flow2');
+
+            if (!flow1URL || !flow2URL) {
+                console.error("Flow URLs not provided!");
+                return;
+            }
+
+            if (screenWidth <= 425) {
+                window.location.href = decodeURIComponent(flow1URL);
+            } else {
+                window.location.href = decodeURIComponent(flow2URL);
+            }
+        });
+    </script>
+</body>
+
+</html>
